@@ -49,15 +49,14 @@
     var shouldResume = sessionStorage.getItem('mpPlaying') === 'true';
 
     if (shouldResume) {
-      // Browsers block unmuted autoplay without a fresh user gesture on
-      // this page, so start muted (muted autoplay is always allowed),
-      // call playVideo() directly against the playlist already set in
-      // playerVars, then poll the player's real state until playback has
-      // actually begun before unmuting. Note: setShuffle() is NOT called
-      // here before playVideo() — doing so reorders the playlist and was
-      // triggering a brief internal re-cue that interrupted playback right
-      // as it started (title would flash then stop). It's applied only
-      // once playback is confirmed stable.
+      // Chrome only allows autoplay when it's muted, and it actively
+      // re-pauses playback if a script calls unMute() on that same
+      // video without a fresh click on this page — there is no way to
+      // script around that, it's an anti-abuse policy. So on a page
+      // that's resuming playback automatically, stay muted and reflect
+      // that in the UI: clicking the mute button IS a real user
+      // gesture, so unmuting from there works fine.
+      muted = true;
       e.target.mute();
       e.target.playVideo();
       var tries = 0;
@@ -66,8 +65,9 @@
         var state = e.target.getPlayerState ? e.target.getPlayerState() : null;
         if (state === YT.PlayerState.PLAYING) {
           clearInterval(poll);
-          if (!muted) e.target.unMute();
           e.target.setShuffle(true);
+          var muteBtn = document.getElementById('mpMuteBtn');
+          if (muteBtn) muteBtn.classList.add('mp-active');
         } else if (tries > 25) {
           clearInterval(poll);
         }

@@ -16,7 +16,8 @@
 // (Yonsei, Seoul, Busan, DMZ), plus UNC campus, Miami, a Dallas trip, and an
 // NC hiking trip with friends.
 
-const galleryPhotos = [  { src: 'assets/gallery/WhatsApp Image 2026-09-18 at 23.11.57.jpeg', album: 'Travel', caption: 'Dallas' },
+const galleryPhotos = [  { src: 'assets/gallery/WhatsApp Image 2026-09-19 at 11.38.49.jpeg', album: 'Korea', caption: 'Lotus pond' },
+  { src: 'assets/gallery/WhatsApp Image 2026-09-18 at 23.11.57.jpeg', album: 'Travel', caption: 'Dallas' },
   { src: 'assets/gallery/WhatsApp Image 2026-09-18 at 23.11.58 (1).jpeg', album: 'UNC', caption: '' },
   { src: 'assets/gallery/WhatsApp Image 2026-09-18 at 23.11.58 (2).jpeg', album: 'UNC', caption: 'Kenan Stadium' },
   { src: 'assets/gallery/WhatsApp Image 2026-09-18 at 23.11.58.jpeg', album: 'UNC', caption: '' },
