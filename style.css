@@ -260,6 +260,12 @@ a { color: inherit; }
   min-width: 0;
 }
 
+@media (min-width: 901px) {
+  .main-content {
+    padding-right: 130px;
+  }
+}
+
 @media (max-width: 700px) {
   .page-shell {
     flex-direction: column;
@@ -402,6 +408,7 @@ img.photo-placeholder {
 /* ===== About page (portrait carousel + text columns) ===== */
 .about-columns {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 40px;
 }
@@ -824,6 +831,7 @@ img.photo-placeholder {
 
 .journey-row {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 28px;
 }
