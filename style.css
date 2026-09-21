@@ -300,6 +300,14 @@ a { color: inherit; }
   .link-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .media-player {
+    display: none;
+  }
+
+  .wrapper {
+    padding-bottom: 24px;
+  }
 }
 
 /* ===== Hero ===== */
