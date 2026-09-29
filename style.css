@@ -949,17 +949,6 @@ img.photo-placeholder {
   line-height: 1.5;
 }
 
-@media (max-width: 700px) {
-  .journey-row,
-  .journey-row.reverse {
-    flex-direction: column;
-  }
-
-  .journey-text {
-    text-align: center;
-  }
-}
-
 /* ===== Photo carousel (About section) ===== */
 .photo-carousel {
   position: relative;
