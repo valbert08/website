@@ -1589,15 +1589,20 @@ section.panel p {
     align-items: stretch;
   }
 
+  /* Sized to always fit (see assets/js/fit-scale.js), so no scrolling here */
   .sidebar-col {
     position: static;
-    padding: 48px 0 24px;
-    overflow-y: auto;
-    scrollbar-width: none;
+    padding: 32px 0 16px;
+    gap: 14px;
   }
 
-  .sidebar-col::-webkit-scrollbar {
-    display: none;
+  .sidebar {
+    gap: 22px;
+    padding: 30px 26px;
+  }
+
+  .fit-screen .wrapper {
+    padding-bottom: 72px;
   }
 
   .main-content {
@@ -1605,5 +1610,9 @@ section.panel p {
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(255,255,255,0.35) transparent;
+  }
+
+  .main-content.fit-screen {
+    padding-top: 32px;
   }
 }
