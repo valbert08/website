@@ -40,6 +40,8 @@
 
 html {
   font-size: 19px;
+  /* Render the whole site at 80% scale (same effect as browser zoom-out) */
+  zoom: 0.8;
 }
 
 html, body {
@@ -198,13 +200,18 @@ a { color: inherit; }
   margin: 0;
 }
 
+/* Flex-wrap (not grid) so an odd tile left over on the last row is centered */
 .utility-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  --tile-cols: 2;
+  --tile-gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--tile-gap);
 }
 
 .utility-tile {
+  flex: 0 0 calc((100% - (var(--tile-cols) - 1) * var(--tile-gap)) / var(--tile-cols));
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -266,9 +273,12 @@ a { color: inherit; }
   }
 }
 
-@media (max-width: 700px) {
+/* ===== Narrow screens: sidebar collapses into a compact nav above the content ===== */
+@media (max-width: 900px) {
   .page-shell {
     flex-direction: column;
+    /* stretch so the content column matches the screen width instead of its widest child */
+    align-items: stretch;
     margin: 20px auto;
     padding: 0 16px;
     gap: 16px;
@@ -276,38 +286,88 @@ a { color: inherit; }
 
   .sidebar-col {
     width: 100%;
+    max-width: 560px;
     flex: 0 0 auto;
     position: static;
+    align-self: center;
+    gap: 12px;
+  }
+
+  .sidebar-brand {
+    flex-direction: row;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .sidebar-avatar {
+    width: 56px;
+    height: 56px;
   }
 
   .sidebar {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
+    padding: 16px;
+    gap: 12px;
+    border-radius: 24px;
   }
 
-  .sidebar-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
-
+  .sidebar .divider,
   .sidebar-footer {
-    margin-top: 0;
-  }
-
-  .link-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .media-player {
     display: none;
+  }
+
+  /* Main pages: 2x2 pills */
+  .sidebar-nav {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .sidebar-nav a {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+    gap: 8px;
+  }
+
+  .sidebar-nav a svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Secondary pages: small 3-column tiles */
+  .utility-grid {
+    --tile-cols: 3;
+    --tile-gap: 8px;
+  }
+
+  .utility-tile {
+    padding: 8px 4px;
+    border-radius: 12px;
+  }
+
+  .utility-tile svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .utility-tile .li-mark {
+    font-size: 0.9rem;
+    line-height: 22px;
+  }
+
+  .utility-tile .tile-label {
+    font-size: 0.58rem;
   }
 
   .wrapper {
     padding-bottom: 24px;
   }
+}
+
+/* ===== Gallery (temporarily disabled) =====
+   Hides every link to gallery.html site-wide. gallery.html and assets/gallery/
+   are untouched. To relaunch the gallery, delete this rule. */
+.gallery-link {
+  display: none !important;
 }
 
 /* ===== Hero ===== */
@@ -816,16 +876,10 @@ img.photo-placeholder {
   cursor: pointer;
 }
 
-@media (max-width: 700px) {
+/* Hidden on narrow screens (must come after the base .media-player rule to win) */
+@media (max-width: 900px) {
   .media-player {
-    bottom: 12px;
-    right: 12px;
-    width: 92vw;
-    max-width: 340px;
-  }
-
-  .mp-controls-row {
-    flex-wrap: wrap;
+    display: none;
   }
 }
 
@@ -998,6 +1052,9 @@ section.panel p {
 .mascot-image-container {
   position: relative;
   display: inline-block;
+  /* Let the 560px carousel shrink on narrow screens instead of overflowing */
+  min-width: 0;
+  max-width: 100%;
 }
 
 .speech-bubble-container {
@@ -1469,8 +1526,10 @@ section.panel p {
 .link-text {
   display: flex;
   flex-direction: column;
+  min-width: 0;
   text-align: left;
   line-height: 1.3;
+  overflow-wrap: break-word;
 }
 
 .link-text strong {
@@ -1480,4 +1539,15 @@ section.panel p {
 .link-text small {
   font-size: 0.72rem;
   opacity: 0.85;
+}
+
+/* Must come after the base .link-grid rule to take effect */
+@media (max-width: 700px) {
+  .link-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  section.panel.main-box {
+    padding: 32px 20px;
+  }
 }
