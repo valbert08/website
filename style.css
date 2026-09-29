@@ -310,9 +310,14 @@ a { color: inherit; }
     border-radius: 24px;
   }
 
-  .sidebar .divider,
-  .sidebar-footer {
+  .sidebar .divider {
     display: none;
+  }
+
+  .sidebar-footer {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
   }
 
   /* Main pages: 2x2 pills */
