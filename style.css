@@ -1551,3 +1551,35 @@ section.panel p {
     padding: 32px 20px;
   }
 }
+
+/* ===== Bottom copy of the nav (cloned by assets/js/mobile-nav.js), narrow screens only ===== */
+.sidebar-col.sidebar-col--bottom {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .sidebar-col.sidebar-col--bottom {
+    display: flex;
+    margin-top: 8px;
+  }
+
+  /* About journey: stack each row and show photos full width */
+  .journey-row,
+  .journey-row.reverse {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .journey-text {
+    text-align: center;
+  }
+
+  .journey-carousel.landscape,
+  .journey-carousel.portrait {
+    width: 100%;
+  }
+
+  .journey-carousel.portrait {
+    max-width: 420px;
+  }
+}
