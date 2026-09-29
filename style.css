@@ -1546,14 +1546,10 @@ section.panel p {
   }
 }
 
-/* ===== Bottom copy of the nav (cloned by assets/js/mobile-nav.js), narrow screens only ===== */
-.sidebar-col.sidebar-col--bottom {
-  display: none;
-}
-
 @media (max-width: 900px) {
-  .sidebar-col.sidebar-col--bottom {
-    display: flex;
+  /* Nav sits below the content on narrow screens */
+  .sidebar-col {
+    order: 2;
     margin-top: 8px;
   }
 
@@ -1575,5 +1571,39 @@ section.panel p {
 
   .journey-carousel.portrait {
     max-width: 420px;
+  }
+}
+
+/* ===== Desktop: page is fixed; only the right-hand content column scrolls ===== */
+@media (min-width: 901px) {
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .page-shell {
+    position: fixed;
+    inset: 0;
+    margin: 0 auto;
+    align-items: stretch;
+  }
+
+  .sidebar-col {
+    position: static;
+    padding: 48px 0 24px;
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+
+  .sidebar-col::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-content {
+    padding-top: 48px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.35) transparent;
   }
 }
