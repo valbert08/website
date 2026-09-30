@@ -16,6 +16,8 @@
     'nav.content': 'Contenido',
 
     'tile.linkedin': 'LinkedIn',
+
+    'footer.chat': '¡Hablemos!',
     'tile.certificates': 'Certificados',
     'tile.education': 'Educación',
     'tile.gallery': 'Galería',

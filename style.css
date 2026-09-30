@@ -68,6 +68,8 @@ body {
 }
 
 a { color: inherit; }
+/* links.js removes the email link's href, which drops the default link underline; restore it */
+:where(a[data-href]) { cursor: pointer; text-decoration: underline; }
 
 /* ===== Glass panel base ===== */
 .glass {
