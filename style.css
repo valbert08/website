@@ -1340,13 +1340,19 @@ section.panel p {
   aspect-ratio: 16 / 9;
 }
 
-.card .video-embed iframe {
+.card .video-embed iframe,
+.card .video-embed video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: none;
   border-radius: 0 0 18px 18px;
+}
+
+.card .video-embed video {
+  background: #000;
+  object-fit: contain;
 }
 
 .card .title {
